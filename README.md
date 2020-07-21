@@ -1,0 +1,2 @@
+# mailer
+MAILER Microservice
