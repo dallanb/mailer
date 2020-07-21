@@ -23,14 +23,14 @@ $container['logger'] = function ($c) {
 
 $app->get('/ping', function (
     Request $request,
-    Response $response,
-    array $args
+    Response $response
 ) {
     $this->logger->addInfo('ping');
-    $data = ['name' => 'Rob', 'age' => 40];
-    return $response->withJson(
-        ['msg' => 'OK', 'data' => ['message' => 'pong']],
-        200
-    );
+    return $response->withJson([
+        'msg' => 'OK',
+        'data' => [
+            'message' => 'pong'
+        ]
+    ], 200);
 });
 $app->run();
