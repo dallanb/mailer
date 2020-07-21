@@ -28,7 +28,8 @@ $app->get('/ping', function (
 ) {
     $this->logger->addInfo('ping');
     $data = ['name' => 'Rob', 'age' => 40];
-    return $response->withJson(['msg' => 'OK', 'data' => ['message' => 'pong']],
+    return $response->withJson(
+        ['msg' => 'OK', 'data' => ['message' => 'pong']],
         200
     );
 });
