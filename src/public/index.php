@@ -16,21 +16,23 @@ $container = $app->getContainer();
 # configure logging
 $container['logger'] = function ($c) {
     $logger = new \Monolog\Logger('my_logger');
-    $file_handler = new \Monolog\Handler\StreamHandler('../logs/tapir.log');
+    $file_handler = new \Monolog\Handler\StreamHandler(
+        '/var/www/html/logs/tapir.log'
+    );
     $logger->pushHandler($file_handler);
     return $logger;
 };
 
-$app->get('/ping', function (
-    Request $request,
-    Response $response
-) {
+$app->get('/ping', function (Request $request, Response $response) {
     $this->logger->addInfo('ping');
-    return $response->withJson([
-        'msg' => 'OK',
-        'data' => [
-            'message' => 'pong'
-        ]
-    ], 200);
+    return $response->withJson(
+        [
+            'msg' => 'OK',
+            'data' => [
+                'message' => 'pong',
+            ],
+        ],
+        200
+    );
 });
 $app->run();

@@ -18,7 +18,7 @@ services:
     volumes:
       - mailer_volume:/var/www/html
     ports:
-      - 80:80
+      - 8080:80
     depends_on:
       - mailer
 volumes:

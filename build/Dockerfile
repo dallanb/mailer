@@ -5,4 +5,7 @@ WORKDIR /var/www/html
 
 COPY src .
 
+
 RUN php composer.phar u
+
+RUN chown -R www-data:www-data /var/www/html
