@@ -19,7 +19,7 @@ class Mailer
      *
      * @return	boolean
      */
-    public static function send($to, $name, $subject, $html, $text)
+    public static function send($to, $name, $subject, $html, $text = null)
     {
         $mail = new PHPMailer(true); // Passing `true` enables exceptions
 
@@ -43,7 +43,9 @@ class Mailer
         $mail->isHTML(true); // Set email format to HTML
         $mail->Subject = $subject;
         $mail->Body = $html;
-        $mail->AltBody = $text;
+        if ($text !== null) {
+            $mail->AltBody = $text;
+        }
         $mail->CharSet = 'UTF-8';
 
         if (filter_var($to, FILTER_VALIDATE_EMAIL) !== false) {

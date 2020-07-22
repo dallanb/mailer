@@ -11,6 +11,6 @@ $app = new \Slim\App([
 
 require __DIR__ . '/src/config/dependencies.php';
 
-require __DIR__ . '/src/routes/ping.php';
+require __DIR__ . '/src/routes/api.php';
 
 $app->run();
