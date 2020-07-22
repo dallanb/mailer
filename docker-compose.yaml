@@ -7,8 +7,12 @@ services:
       dockerfile: ${HUNCHO_DIR}/services/mailer/build/Dockerfile
     restart: always
     volumes:
-      - ${HUNCHO_DIR}/services/mailer/src/public:/var/www/html/public
-      - mailer_volume:/var/www/html
+      - ${HUNCHO_DIR}/services/mailer/public:/home/app/public
+      - ${HUNCHO_DIR}/services/mailer/src:/home/app/src
+      - ${HUNCHO_DIR}/services/mailer/manage.php:/home/app/manage.php
+      - mailer_volume:/home/app
+    env_file:
+      - ${HUNCHO_DIR}/env/prod/.env.mailer
   mailer_web:
     container_name: mailer_web
     build:

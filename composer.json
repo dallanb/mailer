@@ -7,8 +7,11 @@
         "robmorgan/phinx": "^0.5.1"
     },
     "autoload": {
-        "psr-4": {
-            "Example\\": "classes/"
-        }
+        "files": [
+            "src/config/config.php"
+        ],
+        "classmap": [
+            "src/libs"
+        ]
     }
 }
