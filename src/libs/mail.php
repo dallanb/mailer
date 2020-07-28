@@ -10,14 +10,14 @@ class Mailer
     /**
      * This method sends a email
      *
-     * @param	string	$fro	 	Email address origin
-     * @param	string	$to			Email addess destination
-     * @param	string	$name		Name of addressee
-     * @param	string	$subject	Topic of message
-     * @param	string	$html		Message HTML
-     * @param	string	$text		Message simple
+     * @param string $fro Email address origin
+     * @param string $to Email addess destination
+     * @param string $name Name of addressee
+     * @param string $subject Topic of message
+     * @param string $html Message HTML
+     * @param string $text Message simple
      *
-     * @return	boolean
+     * @return    boolean
      */
     public static function send($to, $name, $subject, $html, $text = null)
     {
