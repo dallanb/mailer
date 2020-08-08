@@ -46,7 +46,7 @@ class Mailer
         if ($text !== null) {
             $mail->AltBody = $text;
         }
-        $mail->CharSet = 'UTF-8';
+        $mail->CharSet = PHPMailer::CHARSET_UTF8;
 
         if (filter_var($to, FILTER_VALIDATE_EMAIL) !== false) {
             $result = $mail->send();
