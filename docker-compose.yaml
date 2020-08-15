@@ -1,0 +1,29 @@
+version: '3.2'
+services:
+  mailer:
+    container_name: mailer
+    build:
+      context: ${HUNCHO_DIR}/services/mailer
+      dockerfile: ${HUNCHO_DIR}/services/mailer/build/Dockerfile
+    restart: always
+    volumes:
+      - ${HUNCHO_DIR}/services/mailer/public:/home/app/public
+      - ${HUNCHO_DIR}/services/mailer/src:/home/app/src
+      - ${HUNCHO_DIR}/services/mailer/manage.php:/home/app/manage.php
+      - mailer_volume:/home/app
+    env_file:
+      - ${HUNCHO_DIR}/env/prod/.env.mailer
+  mailer_web:
+    container_name: mailer_web
+    build:
+      context: ${HUNCHO_DIR}/services/mailer/web
+      dockerfile: ${HUNCHO_DIR}/services/mailer/web/build/Dockerfile
+    restart: always
+    volumes:
+      - mailer_volume:/var/www/html
+    ports:
+      - 8080:80
+    depends_on:
+      - mailer
+volumes:
+  mailer_volume:
