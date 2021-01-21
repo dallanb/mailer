@@ -1,4 +1,4 @@
-FROM composer as builder
+FROM composer as composer_builder
 
 WORKDIR /app
 
@@ -10,11 +10,16 @@ COPY manage.php ./manage.php
 RUN composer install
 
 ####
-FROM php:7.2-fpm-alpine
+FROM php:7.2-fpm
 
 # set work directory
 WORKDIR /home/app
 
-COPY --from=builder /app/. /home/app/.
+COPY --from=composer_builder /app/. /home/app/.
+
+RUN apt-get update
+RUN apt-get install -y librdkafka-dev
+RUN pecl install rdkafka
+RUN echo "extension=rdkafka.so" > /usr/local/etc/php/conf.d/rdkafka.ini
 
 RUN chown -R www-data:www-data /home/app
